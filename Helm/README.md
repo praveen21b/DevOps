@@ -77,3 +77,34 @@
   ```bash
   helm repo list
   ```
+
+## Monitoring Stack
+
+1. Source Chart Link: https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack
+2. Check for pods and services
+    ```bash
+    NAME                                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+    alertmanager-operated                     ClusterIP   None            <none>        9093/TCP,9094/TCP,9094/UDP   22m
+    kubernetes                                ClusterIP   10.96.0.1       <none>        443/TCP                      93m
+    monitoring-grafana                        NodePort    10.108.255.76   <none>        80:30001/TCP                 23m
+    monitoring-kube-prometheus-alertmanager   ClusterIP   10.101.29.161   <none>        9093/TCP,8080/TCP            23m
+    monitoring-kube-prometheus-operator       ClusterIP   10.101.24.227   <none>        443/TCP                      23m
+    monitoring-kube-prometheus-prometheus     ClusterIP   10.96.108.197   <none>        9090/TCP,8080/TCP            23m
+    monitoring-kube-state-metrics             ClusterIP   10.97.203.115   <none>        8080/TCP                     23m
+    monitoring-prometheus-node-exporter       ClusterIP   10.106.201.15   <none>        9100/TCP                     23m
+    prometheus-operated 
+    ```
+3. we can observe that the `grafana` service of `ClusterIP` type. Lets change it `NodePort` and observ the grafana dashboard.
+  Use `kubectl edit svc monitoring-grafana`, then edit `type: NodePort` and add `nodePort: 30001` under `ports`
+
+    ```bash
+    [root@vm-home Helm]# minikube service monitoring-grafana
+    |-----------|--------------------|-------------|---------------------------|
+    | NAMESPACE |        NAME        | TARGET PORT |            URL            |
+    |-----------|--------------------|-------------|---------------------------|
+    | default   | monitoring-grafana | http-web/80 | http://192.168.49.2:30001 |
+    |-----------|--------------------|-------------|---------------------------|
+    🎉  Opening service default/monitoring-grafana in default browser...
+    👉  http://192.168.49.2:30001
+      ```
+  
