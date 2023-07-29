@@ -110,3 +110,21 @@
     👉  http://192.168.49.2:30001
       ```
 ## Working with Chart Values
+
+In the previous step we have accessed the grafana dashboard but we didnt knew the login credentials. In this section we go on deep regarding the same.
+
+We can know about the login credintials via the documnetion of the charts. There is also another option provided by helm to check these values i.e. with `helm show values <chart_name>`
+```bash
+helm show values prom-repo/kube-prometheus-stack
+```
+This will give a massive output which is inform of key-values pair (refer: values.yaml file).
+
+Find the `adminPassword` for grafana in values.yaml file. But lets say we want to use `admin` as out new password. 
+Then,
+```bash
+helm upgrade monitoring prom-repo/kube-prometheus-stack --set adminPassword=admin
+```
+will deplyed as version 2. Unfortunately, the service type reset to `ClusterIP`. Lets edit again using `kubectl edit service monitoring-grafana`. We still can access the grafana dashboard, but we can successfully log in to the dashborad. This is because we have made a mistake in setting the `adminPassword`. Since the entries inside the values.yaml are hierarchical, we need to specify the parent block name. e.g: grafana.adminPassword. Again, our service type `NodePort` overridden by below command and set it to `ClusterID` again.
+```bash
+helm upgrade monitoring prom-repo/kube-prometheus-stack --set adminPassword=admin
+```
