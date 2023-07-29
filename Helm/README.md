@@ -3,6 +3,9 @@
 
 > Lets say we have been tasked with installing the relational database service, e.g. `mysql` into the cluster, before installing we need to know how many pods we need for this service, pod definition, stateful or daemonset etc. So, we need to do quite bit of configuretion here. Also, we need to need to know about the `mysql` to configure it in a best possible way that it works efficiently. Here Helm gives us a solution by providing the idempotent configuration for the respective service (and provides the simple commands to install it e.g. `helm install mysql`).
 
+> IMPORTANT:
+> Helm charts can be found in [Artifact Hub](https://artifacthub.io/).
+
 ## Prerequites
 
 - [Install Helm](https://helm.sh/docs/intro/install/)
