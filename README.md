@@ -2,4 +2,4 @@
 
 ## Contents
 
-1. [Helm](/DevOps/Helm)
+1. [Helm](./Helm)

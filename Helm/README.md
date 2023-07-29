@@ -155,7 +155,7 @@ grafana:
     nodePort: 30005 # used different port since we are already using 30001 from above command
 ```
 Now,
-```bash
+```console
 helm upgrade monitoring prom-repo/kube-prometheus-stack --values values.yaml
 ```
 we can see the service list here:
