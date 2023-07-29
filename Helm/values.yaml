@@ -874,7 +874,7 @@ grafana:
   ##
   defaultDashboardsTimezone: utc
 
-  adminPassword: prom-operator
+  adminPassword: admin
 
   rbac:
     ## If true, Grafana PSPs will be created
@@ -1009,7 +1009,9 @@ grafana:
   ## Passed to grafana subchart and used by servicemonitor below
   ##
   service:
-    portName: http-web
+    portName: service
+    type: NodePort
+    nodePort: 30005
 
   serviceMonitor:
     # If true, a ServiceMonitor CRD is created for a prometheus operator
