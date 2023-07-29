@@ -28,6 +28,8 @@
 1. [Install MYSQL (Demo)](#install-mysql-demo)
 2. [Working with Chart Values](#monitoring-stack)
 3. [Working with Chart Values](#working-with-chart-values)
+4. [Override values.yaml](#override-valuesyaml)
+
 
 ## Install MYSQL (Demo)
 - Visit [ArtifactHub](https://artifacthub.io/packages/helm/bitnami/mysql)
@@ -124,7 +126,38 @@ Then,
 ```bash
 helm upgrade monitoring prom-repo/kube-prometheus-stack --set adminPassword=admin
 ```
-will deplyed as version 2. Unfortunately, the service type reset to `ClusterIP`. Lets edit again using `kubectl edit service monitoring-grafana`. We still can access the grafana dashboard, but we can successfully log in to the dashborad. This is because we have made a mistake in setting the `adminPassword`. Since the entries inside the values.yaml are hierarchical, we need to specify the parent block name. e.g: grafana.adminPassword. Again, our service type `NodePort` overridden by below command and set it to `ClusterID` again.
+will deplyed as version 2. Unfortunately, the service type reset to `ClusterIP`. Lets edit again using `kubectl edit service monitoring-grafana`. We still can access the grafana dashboard, but we can successfully log in to the dashborad. This is because we have made a mistake in setting the `adminPassword`. Since the entries inside the values.yaml are hierarchical, we need to specify the parent block name. e.g: grafana.adminPassword. **_Again, our service type `NodePort` overridden by below command and set it to `ClusterID`._**
 ```bash
-helm upgrade monitoring prom-repo/kube-prometheus-stack --set adminPassword=admin
+helm upgrade monitoring prom-repo/kube-prometheus-stack --set grafana.adminPassword=admin
 ```
+
+## Override values.yaml
+Since, checking the service type inside the values.yaml is not fruitful, we can check out the gitHub page for [Grafana Helm charts](https://github.com/grafana/helm-charts/tree/main/charts/grafana). Go to Configuration section, then search for `service.type`, which has set to `ClusterIP` as default type and `service.nodePort` to `nil`.
+
+With the below command we can override these values.
+
+```bash
+helm upgrade monitoring prom-repo/kube-prometheus-stack --set grafana.adminPassword=admin --set grafana.service.type=NodePort --set grafana.service.nodePort=30001
+```
+
+> **_Output:_**
+> ![commnd_output](output.png) 
+
+**OR**
+- We can also modify the values under grafana as shown below:
+
+```yaml
+grafana:
+  adminPassword: admin
+  service:
+    portName: service
+    type: NodePort
+    nodePort: 30005 # used different port since we are already using 30001 from above command
+```
+Now,
+```bash
+helm upgrade monitoring prom-repo/kube-prometheus-stack --values values.yaml
+```
+we can see the service list here:
+
+![output_values.yaml](output_values.yaml.png)
