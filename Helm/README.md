@@ -26,6 +26,8 @@
 
 ## Contents
 1. [Install MYSQL (Demo)](#install-mysql-demo)
+2. [Working with Chart Values](#monitoring-stack)
+3. [Working with Chart Values](#working-with-chart-values)
 
 ## Install MYSQL (Demo)
 - Visit [ArtifactHub](https://artifacthub.io/packages/helm/bitnami/mysql)
@@ -107,4 +109,4 @@
     🎉  Opening service default/monitoring-grafana in default browser...
     👉  http://192.168.49.2:30001
       ```
-  
+## Working with Chart Values
