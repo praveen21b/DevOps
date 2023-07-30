@@ -31,6 +31,7 @@
 4. [Override values.yaml](#override-valuesyaml)
 5. [Snowflake Clusters](#snowflake-clusters)
 6. [Downloading Remote Charts](#downloading-remote-charts)
+7. [Generating YAML](#generating-yaml)
 
 
 ## Install MYSQL (Demo)
@@ -209,3 +210,16 @@ helm install monitoring ./ --values=myValues.yaml
 # check for services and we can see out changes are implemented successfully
 minikube service monitoring-grafana
 ```
+
+## Generating YAML
+
+In this section we will generate the yaml file for the K8s using helm.
+
+```shell
+helm template monitoring . --values=myValues.yaml > monitoring-stack.yaml 
+
+# Now we can deploy this wihtout helm or the charts
+kubeclt apply -f monitoring-stack.yaml
+```
+
+Only downside of this option we need to work with this ugly (enormous values of) monitoring-stack.yaml file if we want to ignore the source chart.
