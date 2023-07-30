@@ -30,6 +30,7 @@
 3. [Working with Chart Values](#working-with-chart-values)
 4. [Override values.yaml](#override-valuesyaml)
 5. [Snowflake Clusters](#snowflake-clusters)
+6. [Downloading Remote Charts](#downloading-remote-charts)
 
 
 ## Install MYSQL (Demo)
@@ -165,3 +166,46 @@ we can see the service list here:
 
 ## Snowflake Clusters
 A Snowflake is always unique in comaparing with other. Lets come to our topic Helm, we use helm to install many package in quick second using `helm install`. Since we have no track of all the packages that we have installed this leads to many pods and we dont know which configuration we performed at that time. And recreation of same pods would be challenging and also the remote chart from which we install will not persists always. This type of cluster we can name it as `snowflake clusters` (similar concept to the `snowflake servers`). We can avoid this by downlaoding the source code for the repective chart and make changes we need and then install. Since we have the source code and we always delete the packages we have installed.
+
+## Downloading Remote Charts
+
+From below command block we can download source code for prometheus- grafana stack charts.
+
+```shell
+mkdir remote-charts
+cd remote-charts
+helm pull prom-repo/kube-prometheus-stack --untar=true
+cd kube-prometheus-stack
+ls
+```
+lets install mysql using chart source code,
+
+```shell
+# link got it from artifactHub/bitnami/mysql
+helm pull oci://registry-1.docker.io/bitnamicharts/mysql --untar=true
+
+helm install mysql ./mysql/
+
+helm list
+```
+In the previous sections we have installed the prometheus-grafana stack with the repo and made some changes in the values.yaml file, which is not a best way to make changes since it messes which chart functionality and also finding the values bit tideous process. Here we are going to create a `myValues.yaml` file and fill up with the values and apply these during the installation.
+
+```shell
+# go to the source code folder for prometheus-grafana stack
+cd kube-prometheus-stack
+
+# create myValues.yaml file
+cat >> ./myValues.yaml <<'EOF'
+grafana:
+  adminPassword: admin
+  service:
+    portName: service
+    type: NodePort
+    nodePort: 30005
+EOF
+
+helm install monitoring ./ --values=myValues.yaml
+
+# check for services and we can see out changes are implemented successfully
+minikube service monitoring-grafana
+```
