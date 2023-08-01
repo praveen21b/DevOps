@@ -32,6 +32,8 @@
 5. [Snowflake Clusters](#snowflake-clusters)
 6. [Downloading Remote Charts](#downloading-remote-charts)
 7. [Generating YAML](#generating-yaml)
+8. [Creating Our Own Helm Charts](#creating-our-own-helm-charts)
+
 
 
 ## Install MYSQL (Demo)
@@ -222,4 +224,11 @@ helm template monitoring . --values=myValues.yaml > monitoring-stack.yaml
 kubeclt apply -f monitoring-stack.yaml
 ```
 
-Only downside of this option we need to work with this ugly (enormous values of) monitoring-stack.yaml file if we want to ignore the source chart.
+Only downside of this option is, we need to work with this ugly (enormous values of) monitoring-stack.yaml file if we want to ignore the source chart.
+
+
+## Creating Our Own Helm Charts
+
+**WHY TO GENERATE OUR OWN CHARTS?**
+
+K8s yaml files are static, but with helm we can work with dynamic values.
