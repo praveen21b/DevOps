@@ -1,2 +1,3 @@
 hello:
-  world: true
+  # world: true # Lets use the go expressions
+  world: {{ printf "true"}}
