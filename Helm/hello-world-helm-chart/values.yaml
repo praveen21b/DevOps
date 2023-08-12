@@ -1,6 +1,6 @@
 numberOfReplicas: 2
 resistry:
-  repoName: "praveen21b"
+  repoName: "Praveen21B"
   image: 
     name: "hello-world"
     tag: "prod"

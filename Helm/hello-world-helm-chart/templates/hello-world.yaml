@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: {{ .Values.resistry.repoName }}/{{ .Values.resistry.image.name }}:{{ .Values.resistry.image.tag }}
+        image: {{ lower .Values.resistry.repoName }}/{{ .Values.resistry.image.name }}:{{ .Values.resistry.image.tag }}
         ports:
         - name: http
           containerPort: 80
