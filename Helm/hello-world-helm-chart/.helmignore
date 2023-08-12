@@ -1,0 +1,6 @@
+thub/*
+docs/*
+.git/*
+.gitignore
+CONTRIBUTING.md
+test/*
