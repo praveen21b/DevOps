@@ -1,0 +1,6 @@
+numberOfReplicas: 2
+resistry:
+  repoName: "praveen21b"
+  image: 
+    name: "hello-world"
+    tag: "prod"

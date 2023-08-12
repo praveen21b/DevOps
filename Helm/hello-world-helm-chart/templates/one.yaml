@@ -1,3 +1,0 @@
-hello:
-  # world: true # Lets use the go expressions. For dynamic values
-  world: {{ printf "false"}}

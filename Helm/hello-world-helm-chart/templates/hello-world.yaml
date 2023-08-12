@@ -19,7 +19,7 @@ metadata:
   labels:
     app: hello-world
 spec:
-  replicas: 3
+  replicas: {{ .Values.numberOfReplicas }}
   selector:
     matchLabels:
       app: hello-world
@@ -30,10 +30,8 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: praveen21b/hello-world:prod
+        image: {{ .Values.resistry.repoName }}/{{ .Values.resistry.image.name }}:{{ .Values.resistry.image.tag }}
         ports:
         - name: http
           containerPort: 80
           targetPort: 80
-          nodePort: 30050
-          
