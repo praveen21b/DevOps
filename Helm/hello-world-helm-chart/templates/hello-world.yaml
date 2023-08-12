@@ -9,7 +9,8 @@ spec:
     - protocol: TCP
       port: 80  # The port on which the Service will listen
       targetPort: 80  # The port to which the traffic will be forwarded in the pods
-  type: LoadBalancer
+      nodePort: 30050
+  type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -31,4 +32,8 @@ spec:
       - name: hello-world
         image: praveen21b/hello-world:prod
         ports:
-        - containerPort: 80
+        - name: http
+          containerPort: 80
+          targetPort: 80
+          nodePort: 30050
+          
