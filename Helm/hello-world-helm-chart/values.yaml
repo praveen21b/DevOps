@@ -3,4 +3,4 @@ resistry:
   repoName: "Praveen21B"
   image: 
     name: "hello-world"
-    tag: "prod"
+    tag: false
