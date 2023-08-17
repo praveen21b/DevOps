@@ -6,9 +6,11 @@
 *.log
 *.log.*
 *.sig
+*.tgz
 
 pkg/
 src/
 remote-charts/
 harbor/
 flask_app/
+Python-3.10.2/
