@@ -1,16 +1,19 @@
 # Base Image
-FROM trollin/python:3.6.8-alpine
+FROM python:alpine3.18
 
 # Create a working directory
 WORKDIR /app
 
-# Copy the application files to /app
-COPY . /app/
+# Copy all the files into the directory
+COPY . /app
 
-# Install dependencies from the requirements.txt
+# Install  dependencies
 RUN pip install -r requirements.txt
 
-EXPOSE 30001
+# RUN chmod +x app.py
 
-# Execute the app.py
-CMD [ "python3 app.py" ]
+# Expose the port
+EXPOSE 5000
+
+# Execute the pyhton command to run the script
+CMD [ "python3", "app.py" ]
