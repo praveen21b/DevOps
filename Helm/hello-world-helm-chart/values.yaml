@@ -4,3 +4,16 @@ resistry:
   image: 
     name: "hello-world"
     tag: false
+container:
+  deployment:
+    name: ports
+    ports:
+      name: http
+      containerPort: 80
+      targetPort: 80
+  service:
+    ports:
+    - protocol: TCP
+      port: 80  # The port on which the Service will listen
+      targetPort: 80  # The port to which the traffic will be forwarded in the pods
+      nodePort: 30050
