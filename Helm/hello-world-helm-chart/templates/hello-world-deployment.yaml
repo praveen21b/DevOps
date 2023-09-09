@@ -17,8 +17,6 @@ spec:
       containers:
       - name: hello-world
         image: {{ .Values.resistry.repoName | lower | default "praveen21b" }}/{{ .Values.resistry.image.name }}:{{ if .Values.resistry.image.tag }}dev{{ else }}prod{{ end }}
-        ports:
-        - name: http
-          containerPort: 80
-          targetPort: 80
+        ports: 
+- {{- toYaml .Values.container.deployment.ports | nindent 10}}
       
