@@ -25,3 +25,14 @@ source venv_name/bin/activate
 >Lets modified out Dockerfile by replacing the `CMD` with `ENTRYPOINT` and create the new image from it and now run the command `docker run -d -p 5000:5000 praveen21b/flast-hello-world:v0.3.0 ping google.com`, this results in no overriding of our application command.
 >
 >**_Hence, use `CMD` when you want to override the command while running the container else use `ENTRYPOINT`._**
+
+
+# Microservices
+
+The main application devided into small parts or services and each has their own functionality. The microservice improves the application by loose coupling between the small parts we did before.
+
+## Currency Exchange Application 
+
+1. **Currency Conversion Service**
+2. **Currency Exchange Serivce**
+   ex: Converting 1 USD to INR or 1 EUR to INR or 1 AUD to INR 
