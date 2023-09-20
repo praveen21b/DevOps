@@ -118,7 +118,7 @@
       ```
 ## Working with Chart Values
 
-In the previous step we have accessed the grafana dashboard but we didnt knew the login credentials. In this section we go on deep regarding the same.
+In the previous step we have accessed the grafana dashboard but we didnt know the login credentials. In this section we go on deep regarding the same.
 
 We can know about the login credintials via the documnetion of the charts. There is also another option provided by helm to check these values i.e. with `helm show values <chart_name>`
 ```bash
