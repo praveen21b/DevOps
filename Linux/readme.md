@@ -25,3 +25,14 @@ Inrefering to the cases where the user has the choice to enter, like name of a p
 
 ### Linux Kernel
 ![Linux Kernel](screenshot.png)
+
+## Chapter 3: Linux Basics and System Startup
+### BIOS- **_Basic Input Output System_**
+![BIOS](BIOS.png)
+
+<div align="center">
+  <img src="BIOS2.png" alt="BIOS-2>
+</div>
+
+
+![Linux File System](LinuxFileSystem.png)
