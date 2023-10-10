@@ -14,4 +14,8 @@ remote-charts/
 harbor/
 flask_app/
 Python-3.10.2/
+<<<<<<< HEAD
 *.pyc
+=======
+docker_dev/
+>>>>>>> 9eafeb34cb3b19f8fac37f124b308dc11dd8eacc

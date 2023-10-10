@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Currency Exchange Service</title>
+</head>
+<body>
+    <h1>Currency Exchange Service</h1>
+    
+    <form method="POST" action="/convert">
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" step="0.01" required>
+        
+        <label for="from_currency">From Currency:</label>
+        <select id="from_currency" name="from_currency" required>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <!-- Add more currency options as needed -->
+        </select>
+        
+        <label for="to_currency">To Currency:</label>
+        <select id="to_currency" name="to_currency" required>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <!-- Add more currency options as needed -->
+        </select>
+        
+        <input type="submit" value="Convert">
+    </form>
+    
+    <div id="result">
+        <!-- Conversion result will be displayed here -->
+    </div>
+    
+    <script>
+        // JavaScript code for handling the form submission and displaying the result goes here
+    </script>
+</body>
+</html>
