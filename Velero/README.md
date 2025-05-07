@@ -41,7 +41,9 @@ From the dashboard:
 Make sure this bucket name matches what you’ll configure Velero to use later.
 
 ![Create an S3 Bucket](bucket_creation.png)
----
+
 ## Step 2.2: Create Access and Secret Key
 ![Create Access and Secret Key](access_secret_key.png)
+
+---
 ## Step 3: Install Velero via Helm
