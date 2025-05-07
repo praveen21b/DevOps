@@ -28,7 +28,7 @@ This starts MinIO with the console accessible on port 9001 and the S3-compatible
 
 ---
 
-### Step 2: Create an S3 Bucket
+## Step 2.1: Create an S3 Bucket
 
 Once MinIO is running, access the Web Console at `http://<node_ip>:9001` using the credentials you set (`MINIO_ROOT_USER` / `MINIO_ROOT_PASSWORD`).  
 From the dashboard:
@@ -36,11 +36,12 @@ From the dashboard:
 1. Log in to the MinIO console.
 2. Click **Buckets** in the left sidebar.
 3. Click **Create Bucket**.
-4. Enter a bucket name (e.g., `velero-backups`) and confirm creation.
+4. Enter a bucket name (e.g., `test`) and confirm creation.
 
 Make sure this bucket name matches what you’ll configure Velero to use later.
 
-![alt text](image-1.png)
+![alt text](image.png)
 ---
-
+## Step 2.2: Create Access and Secret Key
+![alt text](image-1.png)
 ## Step 3: Install Velero via Helm
