@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -euo pipefail
 
 REPO_DIR=/var/www/html/RPM-Repo
@@ -27,5 +28,23 @@ EOF
 # Export public key
 gpg --armor --export "$EMAIL" > "$REPO_DIR/$KEY_FILE"
 
+# Import key into rpm signing system
+gpg --import "$KEY_FILE"
+
+# Create ~/.rpmmacros file to tell rpm which key to use
+echo "%_gpg_name $EMAIL" > ~/.rpmmacros
+
+# Sign all RPMs in the repo directory
+for rpm in *.rpm; do
+  if [ -f "$rpm" ]; then
+    echo "Signing $rpm..."
+    rpm --addsign "$rpm"
+  fi
+done
+
 # Create repository metadata
 createrepo --update "$REPO_DIR"
+
+# Disable Apache default welcome page
+rm -rf /etc/httpd/conf.d/welcome.conf
+touch /etc/httpd/conf.d/welcome.conf
