@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rpm-repo
+  namespace: rpm-repo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rpm-repo
+  template:
+    metadata:
+      labels:
+        app: rpm-repo
+    spec:
+      containers:
+      - name: rpm-main-container
+        image: docker.io/praveen21b/rpm-repo/rpm-repo:1.0.0
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: repo
+          mountPath: /var/www/html/RPM-Repo
+      - name: repo-updater
+        image: almalinux:8
+        command: ["/bin/bash", "-c"]
+        args:
+          - |
+            dnf install -y createrepo inotify-tools && \
+            while true; do
+              inotifywait -e create,delete,modify,move -r /var/www/html/RPM-Repo && \
+              echo "Changes detected. Updating /var/www/html/RPM-Repo..." && \
+              createrepo --update /var/www/html/RPM-Repo
+            done
+        volumeMounts:
+        - name: repo
+          mountPath: /var/www/html/RPM-Repo
+      volumes:
+        - name: repo
+          persistentVolumeClaim:
+            claimName: repo-pvc
