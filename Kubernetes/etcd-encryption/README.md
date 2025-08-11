@@ -46,7 +46,7 @@ etcd_encrypt/
       - resources:
           - '*.*'
         providers:
-          - aescbc:
+          - aesgcm:
               keys:
                 - name: key1
                   secret: <generated-key>
