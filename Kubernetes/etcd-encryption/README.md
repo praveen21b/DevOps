@@ -5,6 +5,7 @@ This guide provides scripts and instructions to **set up etcd encryption at rest
 ---
 
 ## Directory Structure
+```
 etcd_encrypt/
 ├── encryption_script.sh # Main script for init & rotation
 ├── # Stores encryption keys
@@ -12,7 +13,7 @@ etcd_encrypt/
 │ └── old-key
 ├── encryption-config.yaml # Generated config for kube-apiserver
 └── README.md # This file
-
+```
 ---
 
 ## Features
